@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@400;700&display=swap');
+
+$family-sans-serif: "Signika", sans-serif;
+
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+html, body{
+    height: 100%;
+}
+
+html{
+    background-image: url('./assets/images/background-eclipse.jpg');
+    background-size: cover;
+
+    overflow-y: auto;
+}
