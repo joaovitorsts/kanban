@@ -14,6 +14,12 @@ export class MainViewComponent {
     'Fall asleep'
   ];
 
+  doing = [
+    'coding on Leosinho\'s birthday :(',
+    'working',
+    'eating'
+  ]
+
   done = [
     'Get up',
     'Brush teeth',
