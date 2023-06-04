@@ -12,27 +12,53 @@
     <div class="board">
         <div class="board-bar">
             <p class="board-name">
-                Board Name
+                {{board.name}}
             </p>
         </div>
 
         <div class="board-wrapper">
 
             <div class="board-columns" cdkDropListGroup>
-                <div class="board-column" *ngFor="let column of board.columns">
+                <div class="board-column" *ngFor="let status of board.columns">
 
                     <div class="column-title">
-                        {{column.name}}
+                        {{status.name}}
                     </div>
-
-                    <div class="tasks-container"  
-                    cdkDropList
-                    [cdkDropListData]="column.tasks"
-                    (cdkDropListDropped)="drop($event)">
-                        <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-                            {{ item }}
+          
+                    <div *ngIf="status.name == 'Todo'">
+                        <div class="tasks-container"  
+                        cdkDropList
+                        [cdkDropListData]="tasksToDo"
+                        (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of tasksToDo" cdkDrag>
+                                {{ item.title }}
+                            </div>
                         </div>
                     </div>
+
+                    <div *ngIf="status.name == 'Doing'">
+                        <div class="tasks-container"  
+                        cdkDropList
+                        [cdkDropListData]="tasksDoing"
+                        (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of tasksDoing" cdkDrag>
+                                {{ item.title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="status.name == 'Done'">
+                        <div class="tasks-container"  
+                        cdkDropList
+                        [cdkDropListData]="tasksDone"
+                        (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of tasksDone" cdkDrag>
+                                {{ item.title }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div></div>
                 </div>
             </div>
         </div>
