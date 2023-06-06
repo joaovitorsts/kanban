@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'task/:id', component: FormTaskComponent
   },
   {
-    path: 'task/column/:id', component: FormTaskComponent
+    path: 'task/column/:name', component: FormTaskComponent
   }
 ];
 

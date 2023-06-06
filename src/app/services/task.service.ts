@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { v4 as uuid } from 'uuid';
+import { Task } from '../models/task';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -8,16 +10,11 @@ import { v4 as uuid } from 'uuid';
 })
 export class TaskService {
 
-  constructor() { 
+  constructor(private dbService: NgxIndexedDBService) {
+
   }
 
-  getAllColumns(){}
-
-  getAllByColumn(){}
-
-  getById(){}
-
-  delete(){}
-
-  update(){}
+  getTaskById(taskId: number): Observable<unknown> {
+    return this.dbService.getByKey('task', taskId);
+  }
 }

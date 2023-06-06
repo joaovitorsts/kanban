@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainViewComponent } from './pages/main-view/main-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
@@ -58,7 +60,8 @@ const dbConfig: DBConfig = {
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
-    NgxIndexedDBModule.forRoot(dbConfig)
+    NgxIndexedDBModule.forRoot(dbConfig),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

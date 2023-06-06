@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Task } from 'src/app/models/task';
 import { columnKanbanEnum } from 'src/app/enum/column-kanban-enum';
+import { ColumnService } from 'src/app/services/column.service';
 
 @Component({
   selector: 'app-main-view',
@@ -12,24 +13,23 @@ import { columnKanbanEnum } from 'src/app/enum/column-kanban-enum';
 })
 export class MainViewComponent implements OnInit {
 
+  hasTask: boolean = false;
   columns: Array<Column> = [];
   tasks: Array<Task> = [];
   toDoTasks: Array<Task> = [];
   doingTasks: Array<Task> = [];
   doneTasks: Array<Task> = [];
 
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.createColumnsDefault();
-    // Initial tasks Seeding
-    // this.createTasksToDo();
-    // this.createTasksDoing();
-    // this.createTasksDone();
-    this.getAllColumns();
     this.getAllTasks();
+    this.createTasksToDo();
+    this.createTasksDoing();
+    this.createTasksDone();
+    this.columns = this.columnService.getAllColumns();
   }
 
-  constructor(private dbService: NgxIndexedDBService) {
+  constructor(private dbService: NgxIndexedDBService, private columnService: ColumnService) {
 
   }
 
@@ -49,16 +49,7 @@ export class MainViewComponent implements OnInit {
     }
   }
 
-  private getAllColumns() {
-    this.dbService.getAll('column').subscribe({
-      next: (data) => {
-        data.forEach((e) => {
-          let column: Column = new Column((e as Column).id, (e as Column).name);
-          this.columns.push(column);
-        });
-      }
-    });
-  }
+
 
   private createTasksToDo() {
     try {
@@ -118,7 +109,7 @@ export class MainViewComponent implements OnInit {
     }
   }
 
-  private getAllTasks() {
+  private async getAllTasks() {
     this.dbService.getAll('task').subscribe({
       next: (data) => {
         data.forEach((e) => {
@@ -135,7 +126,6 @@ export class MainViewComponent implements OnInit {
         });
       }
     });
-    console.log(this.toDoTasks)
   }
 
   drop(event: CdkDragDrop<Task[]>) {
