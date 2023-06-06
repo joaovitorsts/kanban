@@ -12,57 +12,52 @@
     <div class="board">
         <div class="board-bar">
             <p class="board-name">
-                {{board.name}}
+                <!-- {{board.name}} -->
+                João' Board
             </p>
         </div>
 
         <div class="board-wrapper">
 
             <div class="board-columns" cdkDropListGroup>
-                <div class="board-column" *ngFor="let status of board.columns">
+                <div class="board-column" *ngFor="let status of columns">
 
                     <div class="column-title">
                         {{status.name}}
                     </div>
-          
-                    <div *ngIf="status.name == 'Todo'">
-                        <div class="tasks-container"  
-                        cdkDropList
-                        [cdkDropListData]="tasksToDo"
-                        (cdkDropListDropped)="drop($event)">
-                            <div class="task" *ngFor="let item of tasksToDo" cdkDrag>
+
+                    <div *ngIf="status.name == 'toDo'">
+                        <div class="tasks-container" cdkDropList [cdkDropListData]="toDoTasks"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of toDoTasks" cdkDrag>
                                 {{ item.title }}
                             </div>
                         </div>
                     </div>
 
                     <div *ngIf="status.name == 'Doing'">
-                        <div class="tasks-container"  
-                        cdkDropList
-                        [cdkDropListData]="tasksDoing"
-                        (cdkDropListDropped)="drop($event)">
-                            <div class="task" *ngFor="let item of tasksDoing" cdkDrag>
+                        <div class="tasks-container" cdkDropList [cdkDropListData]="doingTasks"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of doingTasks" cdkDrag>
                                 {{ item.title }}
                             </div>
                         </div>
                     </div>
 
                     <div *ngIf="status.name == 'Done'">
-                        <div class="tasks-container"  
-                        cdkDropList
-                        [cdkDropListData]="tasksDone"
-                        (cdkDropListDropped)="drop($event)">
-                            <div class="task" *ngFor="let item of tasksDone" cdkDrag>
+                        <div class="tasks-container" cdkDropList [cdkDropListData]="doneTasks"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="task" *ngFor="let item of doneTasks" cdkDrag>
                                 {{ item.title }}
                             </div>
                         </div>
                     </div>
-                    
-                    <div></div>
+                    <div class="button-add-task">
+                        <button [routerLink]="'/task/'+status.id" class="button is-primary js-modal-trigger"
+                            data-target="modal-js-example">+</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-

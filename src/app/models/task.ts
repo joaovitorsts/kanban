@@ -1,6 +1,6 @@
-import { Status } from "./status"
+import { Column } from "./column"
 
 export class Task {
-    constructor(public title: string, public status: Status,
-                public startDate: Date, public conclusionDate: Date){}
+    constructor(public id: number, public title: string, public column: number,
+        public startDate: Date, public conclusionDate: Date, public order: number) { }
 }    
