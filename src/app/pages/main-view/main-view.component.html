@@ -30,7 +30,7 @@
                         <div class="tasks-container" cdkDropList [cdkDropListData]="toDoTasks"
                             (cdkDropListDropped)="drop($event)">
                             <div class="task" *ngFor="let item of toDoTasks" cdkDrag>
-                                {{ item.title }}
+                                <a [routerLink]="['/task/'+ item.id]">{{ item.title }}</a>
                             </div>
                         </div>
                     </div>
@@ -38,9 +38,9 @@
                     <div *ngIf="status.name == 'Doing'">
                         <div class="tasks-container" cdkDropList [cdkDropListData]="doingTasks"
                             (cdkDropListDropped)="drop($event)">
-                            <div class="task" *ngFor="let item of doingTasks" cdkDrag>
-                                {{ item.title }}
-                            </div>
+                                <div  class="task" *ngFor="let item of doingTasks" cdkDrag>
+                                    <a [routerLink]="['/task/'+ item.id]">{{ item.title }}</a>
+                                </div>
                         </div>
                     </div>
 
@@ -48,13 +48,12 @@
                         <div class="tasks-container" cdkDropList [cdkDropListData]="doneTasks"
                             (cdkDropListDropped)="drop($event)">
                             <div class="task" *ngFor="let item of doneTasks" cdkDrag>
-                                {{ item.title }}
+                                <a [routerLink]="['/task/'+ item.id]">{{ item.title }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="button-add-task">
-                        <button [routerLink]="'/task/'+status.id" class="button is-primary js-modal-trigger"
-                            data-target="modal-js-example">+</button>
+                        <button [routerLink]="'/task/column/'+ status.id" class="button is-primary js-modal-trigger">+</button>
                     </div>
                 </div>
             </div>
